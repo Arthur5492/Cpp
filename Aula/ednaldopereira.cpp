@@ -8,7 +8,9 @@ void InsertWord(vector<string> &LocalList);
 void PrintWords(const vector<string> &LocalList);
 bool SearchWord(const vector<string> &LocalList);
 bool RemoveWordByIndex(vector<string>&LocalList);
-bool SearchSubstring(const vector<string> &LocalList);
+vector <size_t> SearchSubstring(const vector<string> &LocalList);
+bool RemoveSubstrings(vector<string> &LocalList);
+
 int main()
 {
     vector<string> LocalListOfWords;
@@ -50,6 +52,7 @@ int main()
         }
         if(ch == '4')
         {
+          vector<size_t> indexes=SearchSubstring(LocalListOfWords);
             continue;
         }
         if(ch == '5')
@@ -59,7 +62,7 @@ int main()
         }
         if(ch=='6')
         {
-
+          RemoveSubstrings(LocalListOfWords);
           continue;
         }
         if(ch == '0')
@@ -121,7 +124,43 @@ bool RemoveWordByIndex(vector<string>&LocalList)
     }
 
 }
-bool SearchSubstring(const vector<string> &LocalList){
-  cout<<"Enter wich subword to search"
 
+//Encontra palavra por substring
+vector <size_t> SearchSubstring(const vector<string> &LocalList){
+  cout<<"Enter wich subword to search"<<endl;
+  string str;
+  cin>>str;
+  vector<size_t> indexes;
+  for(size_t i = 0;i<LocalList.size();i++)
+  {
+    size_t position =LocalList.at(i).find(str);
+      if (position<LocalList.at(i).size())
+      {
+      indexes.push_back(i);
+      cout<<"Substring has found:"<<LocalList.at(i)<<endl;
+      }
+  }
+}
+
+//Remove substrings
+bool RemoveSubstrings(vector<string> &LocalList){
+cout<<"Enter wich subword to delete: "<<endl;
+string str;
+cin>>str;
+bool firstremoval= false;
+size_t i=0;
+while(i<LocalList.size()){
+  size_t position =LocalList.at(i).find(str);
+    if (position<LocalList.at(i).size())
+    {
+    cout<<"Substring has found!!, Deleting it!!"<<LocalList.at(i)<<endl;
+    LocalList.erase(LocalList.begin()+i);
+    firstremoval=true;
+    }
+    else
+    {
+      i++;
+    }
+  }
+return firstremoval;
 }
