@@ -5,20 +5,20 @@
 using namespace std;
 
 //prototypes
-void InsertWord(vector<string> &LocalList);
-void PrintWords(const vector<string> &LocalList);
-bool SearchWord(const vector<string> &LocalList);
-bool RemoveWordByIndex(vector<string>&LocalList);
-vector <size_t> SearchSubstring(const vector<string> &LocalList);
-bool RemoveSubstrings(vector<string> &LocalList);
+void InsertWord(vector<string> &LocalFile);
+void PrintWords(const vector<string> &LocalFile);
+bool SearchWord(const vector<string> &LocalFile);
+bool RemoveWordByIndex(vector<string>&LocalFile);
+vector <size_t> SearchSubstring(const vector<string> &LocalFile);
+bool RemoveSubstrings(vector<string> &LocalFile);
 
 //archives prototypes
-bool LoadDatabase(string filename,vector<string>&LocalList);
-bool SaveDatabase(string filename, const vector<string>&LocalList);
+bool LoadDatabase(string filename,vector<string>&LocalFile);
+bool SaveDatabase(string filename, const vector<string>&LocalFile);
 int main()
 {
   string file;
-  vector<string> LocalListOfWords;
+  vector<string> LocalFileofFiles;
 
     while(true) //main loop
     {
@@ -37,53 +37,52 @@ int main()
 
         char ch;
         cin >> ch;
-        if (LoadDatabase(file,LocalListOfWords)== false)
-        {
-          cout<<"Please, select or create a new file first."<<endl;
-          continue;
-
         //conditions or switch case
         if(ch == '1')
         {
           //Cria e entra no arquivo
           cout<<"Enter a file to open: ";
           cin>>file;
-          if (LoadDatabase(file,LocalListOfWords)== false)
+          if (LoadDatabase(file,LocalFileofFiles)== false)
           {
             cout<<"Database file not found, creating a new Database."<<endl;
           }
 
           continue;
         }
+        if (LoadDatabase(file,LocalFileofFiles)== false)
+        {
+          cout<<"Please, select or create a new file first."<<endl;
+          continue;
         if(ch == '2')
         {
-          PrintWords(LocalListOfWords);
+          PrintWords(LocalFileofFiles);
           continue;
         }
 
         if(ch == '3')
         {
-          SearchWord(LocalListOfWords);
+          SearchWord(LocalFileofFiles);
           continue;
         }
         if(ch == '4')
         {
-          vector<size_t> indexes=SearchSubstring(LocalListOfWords);
+          vector<size_t> indexes=SearchSubstring(LocalFileofFiles);
           continue;
         }
         if(ch == '5')
         {
-          RemoveWordByIndex(LocalListOfWords);
+          RemoveWordByIndex(LocalFileofFiles);
           continue;
         }
         if(ch=='6')
         {
-          RemoveSubstrings(LocalListOfWords);
+          RemoveSubstrings(LocalFileofFiles);
           continue;
         }
         if(ch=='7')
         {
-          if (SaveDatabase(file, LocalListOfWords)==false)
+          if (SaveDatabase(file, LocalFileofFiles)==false)
           {
             cout<<"Error, unable to sabe database, search for help, you will need"<<endl;
           }
@@ -91,7 +90,7 @@ int main()
         }
         if(ch == '0')
         {
-          if (SaveDatabase(file, LocalListOfWords)==false)
+          if (SaveDatabase(file, LocalFileofFiles)==false)
           {
             cout<<"Error, unable to sabe database, search for help, you will need"<<endl;
           }
@@ -103,32 +102,32 @@ int main()
     return 0;
 }
 //Passagem por referencia para atualização/remocao
-void InsertWord(vector<string> &LocalList){
+void InsertWord(vector<string> &LocalFile){
   cout<<"Insert a word: ";
   string str;
   cin>>str;
-LocalList.push_back(str);
+LocalFile.push_back(str);
 
 //Passagem por referencia para sconsulta(sem copia, const)
 }
-void PrintWords(const vector<string> &LocalList){
-  cout<<"Print LocalList of words"<<endl;
-  cout<<"LocalList of word has "<<LocalList.size()<<" words: "<<endl;
+void PrintWords(const vector<string> &LocalFile){
+  cout<<"Print LocalFile of words"<<endl;
+  cout<<"LocalFile of word has "<<LocalFile.size()<<" words: "<<endl;
 
-    for (size_t i=0;i<LocalList.size();i++){
-      cout<<"Index"<<i<<"->"<<LocalList.at(i)<<endl;
+    for (size_t i=0;i<LocalFile.size();i++){
+      cout<<"Index"<<i<<"->"<<LocalFile.at(i)<<endl;
 
     }
 
 }
 //Encontrar palavra que está no vetor
-bool SearchWord(const vector<string> &LocalList){
+bool SearchWord(const vector<string> &LocalFile){
     cout<<"Enter with a word to search: ";
     string query;
     cin>>query;
-      for (size_t i=0;i<LocalList.size();i++)
+      for (size_t i=0;i<LocalFile.size();i++)
       {
-        if(LocalList.at(i)==query)
+        if(LocalFile.at(i)==query)
         {
           cout<<"->Word"<<query<<"has found at position"<<i<<endl;
           return true;
@@ -138,14 +137,14 @@ bool SearchWord(const vector<string> &LocalList){
 
 }
 //Remove uma palavra do vector
-bool RemoveWordByIndex(vector<string>&LocalList)
+bool RemoveWordByIndex(vector<string>&LocalFile)
 {
   cout<<"Select wich index you want to remove: "<<endl;
   int index;
   bool firstremoval = false;
   cin>>index;
-    if(index>=0 && index<LocalList.size()){
-      LocalList.erase(LocalList.begin()+index);
+    if(index>=0 && index<LocalFile.size()){
+      LocalFile.erase(LocalFile.begin()+index);
       return true;
       firstremoval = true;
     }else{
@@ -156,35 +155,35 @@ return firstremoval;
 }
 
 //Encontra palavra por substring
-vector <size_t> SearchSubstring(const vector<string> &LocalList){
+vector <size_t> SearchSubstring(const vector<string> &LocalFile){
   cout<<"Enter wich subword to search"<<endl;
   string str;
   cin>>str;
   vector<size_t> indexes;
-  for(size_t i = 0;i<LocalList.size();i++)
+  for(size_t i = 0;i<LocalFile.size();i++)
   {
-    size_t position =LocalList.at(i).find(str);
-      if (position<LocalList.at(i).size())
+    size_t position =LocalFile.at(i).find(str);
+      if (position<LocalFile.at(i).size())
       {
       indexes.push_back(i);
-      cout<<"Substring has found:"<<LocalList.at(i)<<endl;
+      cout<<"Substring has found:"<<LocalFile.at(i)<<endl;
       }
   }
 }
 
 //Remove substrings
-bool RemoveSubstrings(vector<string> &LocalList){
+bool RemoveSubstrings(vector<string> &LocalFile){
 cout<<"Enter wich subword to delete: "<<endl;
 string str;
 cin>>str;
 bool firstremoval= false;
 size_t i=0;
-while(i<LocalList.size()){
-  size_t position =LocalList.at(i).find(str);
-    if (position<LocalList.at(i).size())
+while(i<LocalFile.size()){
+  size_t position =LocalFile.at(i).find(str);
+    if (position<LocalFile.at(i).size())
     {
-    cout<<"Substring has found!!, Deleting it!!"<<LocalList.at(i)<<endl;
-    LocalList.erase(LocalList.begin()+i);
+    cout<<"Substring has found!!, Deleting it!!"<<LocalFile.at(i)<<endl;
+    LocalFile.erase(LocalFile.begin()+i);
     firstremoval=true;
     }
     else
@@ -195,7 +194,7 @@ while(i<LocalList.size()){
 return firstremoval;
 }
 //Carrega arquivo
-bool LoadDatabase(string filename,vector<string>&LocalList)
+bool LoadDatabase(string filename,vector<string>&LocalFile)
 {
   ifstream filereader(filename);
   if(filereader.good())
@@ -203,7 +202,7 @@ bool LoadDatabase(string filename,vector<string>&LocalList)
     string tmp;
     while(getline(filereader,tmp))
     {
-      LocalList.push_back(tmp);
+      LocalFile.push_back(tmp);
     }
     filereader.close();
     return true;
@@ -214,14 +213,14 @@ bool LoadDatabase(string filename,vector<string>&LocalList)
   }
 }
 //salva
-bool SaveDatabase(string filename, const vector<string>&LocalList)
+bool SaveDatabase(string filename, const vector<string>&LocalFile)
 {
   ofstream filewritter(filename);
   if(filewritter.good())
   {
-    for(size_t i=0;i<LocalList.size();i++)
+    for(size_t i=0;i<LocalFile.size();i++)
     {
-      filewritter<<LocalList.at(i)<<endl;
+      filewritter<<LocalFile.at(i)<<endl;
     }
     filewritter.close();
     return true;
