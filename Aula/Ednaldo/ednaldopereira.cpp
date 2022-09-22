@@ -17,23 +17,26 @@ bool LoadDatabase(string filename,vector<string>&LocalList);
 bool SaveDatabase(string filename, const vector<string>&LocalList);
 int main()
 {
+  //Cria e entra no arquivo
+  string file;
+  cout<<"Enter a file to open: ";
+  cin>>file;
     vector<string> LocalListOfWords;
-    if (LoadDatabase("database.txt",LocalListOfWords)== false)
+    if (LoadDatabase(file,LocalListOfWords)== false)
     {
       cout<<"Database file not found, creating a new Database."<<endl;
     }
     while(true) //main loop
     {
         cout << "--------------------------------------------------" << endl;
-        cout << "UFxC String Store V.0" << endl;
-        cout << "1. Insert string" << endl;
-        cout << "2. Print index and string" << endl;
-        cout << "3. Search string (literalpos)" << endl;
-        cout << "4. Search substrings" << endl;
-        cout << "5. Remove (by index)" << endl;
-        cout << "6. Remove by substrings (all occurrences)" << endl;
-        cout << "7. Save archive"<<endl;
-        cout << "0. Quit" << endl;
+        cout << "FILE MANIPULATOR HACK" << endl;
+        cout << "Select an option:" << endl;
+        cout << "1. Open a File" << endl;
+        cout << "2. Search for Substrings" << endl;
+        cout << "3. Remove Words Containing a Substring" << endl;
+        cout << "4. Remove all Repeated Words" << endl;
+        cout << "5. Show Statistics" << endl;
+        cout << "6. Exit" << endl;
         cout << "--------------------------------------------------" << endl << endl;
 
         cout << "Select an option: ";
@@ -45,28 +48,28 @@ int main()
         if(ch == '1')
         {
           InsertWord(LocalListOfWords);
-              continue;
+          continue;
         }
         if(ch == '2')
         {
           PrintWords(LocalListOfWords);
-            continue;
+          continue;
         }
 
         if(ch == '3')
         {
           SearchWord(LocalListOfWords);
-            continue;
+          continue;
         }
         if(ch == '4')
         {
           vector<size_t> indexes=SearchSubstring(LocalListOfWords);
-            continue;
+          continue;
         }
         if(ch == '5')
         {
           RemoveWordByIndex(LocalListOfWords);
-            continue;
+          continue;
         }
         if(ch=='6')
         {
@@ -75,7 +78,7 @@ int main()
         }
         if(ch=='7')
         {
-          if (SaveDatabase("database.txt", LocalListOfWords)==false)
+          if (SaveDatabase(file, LocalListOfWords)==false)
           {
             cout<<"Error, unable to sabe database, search for help, you will need"<<endl;
           }
@@ -83,7 +86,7 @@ int main()
         }
         if(ch == '0')
         {
-          if (SaveDatabase("database.txt", LocalListOfWords)==false)
+          if (SaveDatabase(file, LocalListOfWords)==false)
           {
             cout<<"Error, unable to sabe database, search for help, you will need"<<endl;
           }
@@ -106,7 +109,7 @@ LocalList.push_back(str);
 }
 void PrintWords(const vector<string> &LocalList){
   cout<<"Print LocalList of words"<<endl;
-  cout<<"LocalList of word has "<<LocalList.size()<<"words: "<<endl;
+  cout<<"LocalList of word has "<<LocalList.size()<<" words: "<<endl;
 
     for (size_t i=0;i<LocalList.size();i++){
       cout<<"Index"<<i<<"->"<<LocalList.at(i)<<endl;
@@ -142,7 +145,7 @@ bool RemoveWordByIndex(vector<string>&LocalList)
       return true;
       firstremoval = true;
     }else{
-      cout<<"Idiot @!&#@!&)"<<endl;
+      cout<<"Idiot @!&#@!&!!"<<endl;
       return false;
     }
 return firstremoval;
@@ -187,7 +190,7 @@ while(i<LocalList.size()){
   }
 return firstremoval;
 }
-
+//Carrega arquivo
 bool LoadDatabase(string filename,vector<string>&LocalList)
 {
   ifstream filereader(filename);
@@ -206,6 +209,7 @@ bool LoadDatabase(string filename,vector<string>&LocalList)
     return false;
   }
 }
+//salva
 bool SaveDatabase(string filename, const vector<string>&LocalList)
 {
   ofstream filewritter(filename);

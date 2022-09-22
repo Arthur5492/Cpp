@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -11,10 +12,16 @@ bool RemoveWordByIndex(vector<string>&LocalList);
 vector <size_t> SearchSubstring(const vector<string> &LocalList);
 bool RemoveSubstrings(vector<string> &LocalList);
 
+//archives prototypes
+bool LoadDatabase(string filename,vector<string>&LocalList);
+bool SaveDatabase(string filename, const vector<string>&LocalList);
 int main()
 {
     vector<string> LocalListOfWords;
-
+    if (LoadDatabase("database.txt",LocalListOfWords)== false)
+    {
+      cout<<"Database file not found, creating a new Database."<<endl;
+    }
     while(true) //main loop
     {
         cout << "--------------------------------------------------" << endl;
@@ -25,6 +32,7 @@ int main()
         cout << "4. Search substrings" << endl;
         cout << "5. Remove (by index)" << endl;
         cout << "6. Remove by substrings (all occurrences)" << endl;
+        cout << "7. Save archive"<<endl;
         cout << "0. Quit" << endl;
         cout << "--------------------------------------------------" << endl << endl;
 
@@ -65,10 +73,23 @@ int main()
           RemoveSubstrings(LocalListOfWords);
           continue;
         }
+        if(ch=='7')
+        {
+          if (SaveDatabase("database.txt", LocalListOfWords)==false)
+          {
+            cout<<"Error, unable to sabe database, search for help, you will need"<<endl;
+          }
+          continue;
+        }
         if(ch == '0')
         {
+          if (SaveDatabase("database.txt", LocalListOfWords)==false)
+          {
+            cout<<"Error, unable to sabe database, search for help, you will need"<<endl;
+          }
             break;
         }
+
 
     }
 
@@ -85,7 +106,7 @@ LocalList.push_back(str);
 }
 void PrintWords(const vector<string> &LocalList){
   cout<<"Print LocalList of words"<<endl;
-  cout<<"LocalList of word has "<<LocalList.size()<<"words: "<<endl;
+  cout<<"LocalList of word has "<<LocalList.size()<<" words: "<<endl;
 
     for (size_t i=0;i<LocalList.size();i++){
       cout<<"Index"<<i<<"->"<<LocalList.at(i)<<endl;
@@ -114,15 +135,17 @@ bool RemoveWordByIndex(vector<string>&LocalList)
 {
   cout<<"Select wich index you want to remove: "<<endl;
   int index;
+  bool firstremoval = false;
   cin>>index;
     if(index>=0 && index<LocalList.size()){
       LocalList.erase(LocalList.begin()+index);
       return true;
+      firstremoval = true;
     }else{
-      cout<<"Idiot @!&#@!&)"<<endl;
+      cout<<"Idiot @!&#@!&!!"<<endl;
       return false;
     }
-
+return firstremoval;
 }
 
 //Encontra palavra por substring
@@ -163,4 +186,40 @@ while(i<LocalList.size()){
     }
   }
 return firstremoval;
+}
+
+bool LoadDatabase(string filename,vector<string>&LocalList)
+{
+  ifstream filereader(filename);
+  if(filereader.good())
+  {
+    string tmp;
+    while(getline(filereader,tmp))
+    {
+      LocalList.push_back(tmp);
+    }
+    filereader.close();
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+bool SaveDatabase(string filename, const vector<string>&LocalList)
+{
+  ofstream filewritter(filename);
+  if(filewritter.good())
+  {
+    for(size_t i=0;i<LocalList.size();i++)
+    {
+      filewritter<<LocalList.at(i)<<endl;
+    }
+    filewritter.close();
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
