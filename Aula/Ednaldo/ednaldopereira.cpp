@@ -17,15 +17,9 @@ bool LoadDatabase(string filename,vector<string>&LocalList);
 bool SaveDatabase(string filename, const vector<string>&LocalList);
 int main()
 {
-  //Cria e entra no arquivo
   string file;
-  cout<<"Enter a file to open: ";
-  cin>>file;
-    vector<string> LocalListOfWords;
-    if (LoadDatabase(file,LocalListOfWords)== false)
-    {
-      cout<<"Database file not found, creating a new Database."<<endl;
-    }
+  vector<string> LocalListOfWords;
+
     while(true) //main loop
     {
         cout << "--------------------------------------------------" << endl;
@@ -43,11 +37,22 @@ int main()
 
         char ch;
         cin >> ch;
+        if (LoadDatabase(file,LocalListOfWords)== false)
+        {
+          cout<<"Please, select or create a new file first."<<endl;
+          continue;
 
         //conditions or switch case
         if(ch == '1')
         {
-          InsertWord(LocalListOfWords);
+          //Cria e entra no arquivo
+          cout<<"Enter a file to open: ";
+          cin>>file;
+          if (LoadDatabase(file,LocalListOfWords)== false)
+          {
+            cout<<"Database file not found, creating a new Database."<<endl;
+          }
+
           continue;
         }
         if(ch == '2')
@@ -92,8 +97,7 @@ int main()
           }
             break;
         }
-
-
+      }
     }
 
     return 0;
