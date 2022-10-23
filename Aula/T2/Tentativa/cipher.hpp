@@ -3,7 +3,8 @@
 class Cipher
 {
 private:
-  Conversion *m_table 
+  Conversion *m_table
 
 public:
+  
 };
