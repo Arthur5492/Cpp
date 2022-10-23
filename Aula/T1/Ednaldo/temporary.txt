@@ -1,0 +1,8 @@
+0 -> hotel
+0 -> hotel
+0 -> you
+0 -> create
+0 -> cat
+0 -> dog
+0 -> hotel
+0 -> youtube
