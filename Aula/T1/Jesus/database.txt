@@ -1,0 +1,15 @@
+Cavalo
+romance
+drogas
+sexo
+drogas
+drogas
+bolas
+arroz
+drogas
+amor
+putaria
+leveza
+
+guardar = cavalo.
+Palavras(cavalo,romance, )
