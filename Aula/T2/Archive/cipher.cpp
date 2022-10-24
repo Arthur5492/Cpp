@@ -1,39 +1,43 @@
 #include "cipher.hpp"
 
-Cipher::Cipher(string matricula)
+Cipher::Cipher(size_t matricula)
 {
-    //aqui serah criado o objeto conversionTable e inicializado de acordo com sua estrategia
-    m_myTable = new ConversionTable();
-    m_myTable->InitializeTable(10, matricula);  //primeiro parametro deslocamento original, se ainda houver na sua estrategia
 
-    m_myTable->ShowConversionTable();  //o enunciado diz para nao expor a tabela para o mundo exterior. Aqui vamos imprimir ela meramente para propositos de depuracao e teste. Na versao final deve ser oculta.
+    m_myTable = new ConversionTable();
+    matricula= matricula%10000;
+    int deslocamento = sqrt(matricula);
+    m_myTable->InitializeTable(deslocamento);
+
+    //m_myTable->ShowConversionTable();
 }
 
 Cipher::~Cipher()
 {
+  delete m_myTable;
 }
 
-void Cipher::NewConversionTable(string matricula)
+void Cipher::NewConversionTable(size_t matricula)
 {
-    //refazer a conversion table de alguma forma, cuidado com a realocacao de for necessario.
-    cout << "estou criando uma nova conversion table, soh que naum" << endl;
+size_t k=0,deslocamento=0;
+  do{
+    deslocamento+=matricula%10;
+    matricula/=10;
+    k++;
+ }while(k<4);
+    m_myTable->InitializeTable(deslocamento);
+
 }
 
-string Cipher::Encrypt(string input)
+string Cipher::Encrypt(string input, size_t matricula)
 {
-    cout << "aqui vou encriptar meu texto com a m_myTable, serah que ela tem metodos de acesso para eu passar um char e ela me devolver o char de substituicao ?  hummmmm...." << endl;
-
-    string output = "haha";
-    return output;
+  m_myTable ->encript(input,matricula);
+  string cript  = m_myTable->encript(input,matricula);
+  return cript;
 }
 
-string Cipher::Decrypt(string input)
+string Cipher::Decrypt(string input, size_t matricula)
 {
-    cout << "aqui vou decriptar meu texto com a m_myTable, serah que ela tem metodos de acesso para eu passar um char e ela me devolver o char original ?  hummmmm...." << endl;
-
-    string output = "hehe";
-    return output;
+  m_myTable ->decript(input, matricula);
+  string cript  = m_myTable->decript(input,matricula);
+  return cript;
 }
-
-
-

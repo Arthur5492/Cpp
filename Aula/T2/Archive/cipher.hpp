@@ -10,12 +10,12 @@ protected:
 
 public:
     Cipher() : m_myTable(NULL) {};
-    Cipher(string matricula);
+    Cipher(size_t matricula);
     ~Cipher();
 
-    void NewConversionTable(string matricula);
-    string Encrypt(string input);
-    string Decrypt(string input);
+    void NewConversionTable(size_t matricula);
+    string Encrypt(string input, size_t matricula);
+    string Decrypt(string input, size_t matricula);
     //outros metodos de sua escolha
 
 };

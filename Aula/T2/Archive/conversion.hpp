@@ -1,6 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string>
+#include <cmath>
 
 using namespace std;
 
@@ -8,8 +12,6 @@ class ConversionTable
 {
 private:
     vector< pair<char,char >> m_table;
-
-    //outros atributos de sua escolha, se forem DINAMICOS serah um plus na nota no quesito complexidade
     int *m_A;
 
 protected:
@@ -18,8 +20,9 @@ public:
     ConversionTable() : m_A(NULL) {};
     ~ConversionTable();
 
-    void InitializeTable(size_t deslocamento, string matricula); //aqui os parametros irao depender da estrategia utilizada
-    void ShowConversionTable();
-    //outros metodos de sua escolha
+    string decript(string input, size_t matricula);
+    string encript(string input, size_t matricula);
+    void InitializeTable(int deslocamento);
+  //  void ShowConversionTable();
 
 };

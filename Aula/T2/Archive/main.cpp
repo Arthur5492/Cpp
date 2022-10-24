@@ -1,16 +1,17 @@
 #include "cipher.hpp"
-#include <stdlib.h>
-#include <unistd.h>
+
 
 int main()
 {
-bool in = true;
-    while(in == true) //MENU
+  string *input = new string;
+  size_t *matricula = new size_t;
+  string encrypted, decrypted;
+  Cipher myCipher(*matricula);
+
+    while(true) //MENU
     {
-      string input, matricula;
-      string encrypted, decrypted;
-      Cipher myCipher(matricula);
-      char ch;
+
+      char ch=0;
 
       cout << "--------------------------------------------------" << endl;
       cout << "CODIFICATOR AND DECODIFICATOR" << endl;
@@ -19,54 +20,87 @@ bool in = true;
         cout<<"2. Insert the text to encode"<<endl;
         cout<<"3. Show Encrypted Text"<<endl;
         cout<<"4. Show Decrypted Text"<<endl;
-        cout<<"5. Exit"<<endl;
+        cout<<"5. Change your encrypt method"<<endl;
         cout<<"You can change the (matricula) whenever you want"<<endl;
       cout << "--------------------------------------------------" << endl;
 
       cout<<"Select an option: "<<endl;
       cin>>ch;
-      bool id = false;// Checa se foi colocado matricula
+      bool id;// Checa se foi colocado matricula
+      bool test;//Checa se foi encriptado
 
       if(ch == '1')
       {
-        cout << "Please enter with your student ID(matricula): ";
-        cin >> matricula;
         id = true;
-        myCipher.NewConversionTable(matricula);
-        cout<<"(Matricula), suceffuly added."<<endl<<sleep(1);
-
-        continue;
+        cout << "Please enter with your student ID(matricula): "<<endl;
+        cin >> *matricula;
+        Cipher myCipher(*matricula);
+        cout<<"(Matricula), suceffuly added."<<endl;
+        cout<<"Going Back to MENU";
+        for(size_t i=0;i<2;i++)
+        {
+          sleep(1);
+          cout<<".";
+        }
+        system("cls");
       }
 
-      if(ch=='2' && id==true)
+      if(ch=='2' && id == true)
       {
         cout<<"Insert the text to encode: "<<endl;
-        cin>>input;
-         //requisito 4 do enunciado
-        encrypted = myCipher.Encrypt(input);
-        decrypted = myCipher.Decrypt(encrypted);
-        cout<<"Text, suceffuly added."<<endl<<sleep(1);
+        while(getline(cin, *input))
+         if(*input != ""){
+                break;
+          }
 
+        cout<<"Text, suceffuly added."<<endl;
+        cout<<"Going back to MENU";
+        for(size_t i=0;i<2;i++)
+        {
+          sleep(1);
+          cout<<".";
+        }
+        system("cls");
         continue;
-
       }
 
-      if(ch=='3' && id==true)
+      if(ch=='3' && id == true)
       {
+        encrypted = myCipher.Encrypt(*input, *matricula);
         cout << "Encrypted text: " << encrypted << endl;
+        test =true;
         continue;
       }
 
-      if(ch=='4' && id==true)
+      if(ch=='4' && id == true)
       {
-
+        if(test==true)
+        {
+          decrypted = myCipher.Decrypt(encrypted, *matricula);
         cout<<"Decrypted text: "<<endl<<decrypted<<endl;
+      }else
+      cout<<"Please Encrypt the text first."<<endl;
         continue;
       }
 
-      if(ch=='5')in == false;
+      if(ch=='5'&& id==true)
+      {
+        myCipher.NewConversionTable(*matricula);
+        delete matricula;
+        cout<<"Encrypt form changed sucefully!"<<endl;
+        cout<<"Going back to MENU";
+        for(size_t i=0;i<2;i++)
+        {
+          sleep(1);
+          cout<<".";
+        }
+        system("cls");
 
-        else
+        continue;
+      }
+      if (ch=='6')break;
+
+        else if(id==false)
         {
           cout<<"Please insert a (Matricula), first!"<<endl;
           sleep(1);
@@ -74,5 +108,9 @@ bool in = true;
           continue;
         }
     }
+
+
+    delete input;
+    delete matricula;
     return 0;
 }
