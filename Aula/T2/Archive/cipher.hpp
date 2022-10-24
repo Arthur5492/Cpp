@@ -1,4 +1,4 @@
-#include "conversionTable.hpp"
+#include "conversion.hpp"
 
 class Cipher
 {

@@ -1,4 +1,4 @@
-#include "conversionTable.hpp"
+#include "conversion.hpp"
 
 void ConversionTable::InitializeTable(size_t deslocamento, string matricula)
 {
@@ -23,8 +23,8 @@ void ConversionTable::ShowConversionTable()
         char orig = m_table.at(i).first;
         char dest = m_table.at(i).second;
 
-        cout << " Orig: " << (char) orig << " - " << (int) orig << " -> " <<
-        " Destino: " << (char) dest << " - " << (int) dest << endl;
+        // cout << " Orig: " << (char) orig << " - " << (int) orig << " -> " <<
+        // " Destino: " << (char) dest << " - " << (int) dest << endl;
     }
 }
 

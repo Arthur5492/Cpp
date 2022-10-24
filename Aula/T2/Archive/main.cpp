@@ -1,24 +1,78 @@
 #include "cipher.hpp"
+#include <stdlib.h>
+#include <unistd.h>
 
 int main()
 {
-    string input = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+bool in = true;
+    while(in == true) //MENU
+    {
+      string input, matricula;
+      string encrypted, decrypted;
+      Cipher myCipher(matricula);
+      char ch;
 
-    //em algum lugar do main aquele menu bonitinho !
+      cout << "--------------------------------------------------" << endl;
+      cout << "CODIFICATOR AND DECODIFICATOR" << endl;
+        cout<<"Select an option: "<<endl;
+        cout<<"1.Enter with (matricula), used for encode(first step)"<<endl;
+        cout<<"2. Insert the text to encode"<<endl;
+        cout<<"3. Show Encrypted Text"<<endl;
+        cout<<"4. Show Decrypted Text"<<endl;
+        cout<<"5. Exit"<<endl;
+        cout<<"You can change the (matricula) whenever you want"<<endl;
+      cout << "--------------------------------------------------" << endl;
 
-    //create a Cipher Object (com codigo de matricula passado)
-    Cipher myCipher("202012341234");
-    myCipher.NewConversionTable("2018222233333"); //requisito 4 do enunciado
+      cout<<"Select an option: "<<endl;
+      cin>>ch;
+      bool id = false;// Checa se foi colocado matricula
 
+      if(ch == '1')
+      {
+        cout << "Please enter with your student ID(matricula): ";
+        cin >> matricula;
+        id = true;
+        myCipher.NewConversionTable(matricula);
+        cout<<"(Matricula), suceffuly added."<<endl<<sleep(1);
 
-    string encrypted = myCipher.Encrypt(input);
-    cout << "Original text: "  << input << endl;
-    cout << "--------------------------------" << endl;
-    cout << "Encrypted text: " << encrypted << endl;
+        continue;
+      }
 
-    string decrypted = myCipher.Decrypt(encrypted);
-    cout << "--------------------------------" << endl;
-    cout << "Reverted text: "  << decrypted << endl;
+      if(ch=='2' && id==true)
+      {
+        cout<<"Insert the text to encode: "<<endl;
+        cin>>input;
+         //requisito 4 do enunciado
+        encrypted = myCipher.Encrypt(input);
+        decrypted = myCipher.Decrypt(encrypted);
+        cout<<"Text, suceffuly added."<<endl<<sleep(1);
 
+        continue;
+
+      }
+
+      if(ch=='3' && id==true)
+      {
+        cout << "Encrypted text: " << encrypted << endl;
+        continue;
+      }
+
+      if(ch=='4' && id==true)
+      {
+
+        cout<<"Decrypted text: "<<endl<<decrypted<<endl;
+        continue;
+      }
+
+      if(ch=='5')in == false;
+
+        else
+        {
+          cout<<"Please insert a (Matricula), first!"<<endl;
+          sleep(1);
+          system("cls");
+          continue;
+        }
+    }
     return 0;
 }

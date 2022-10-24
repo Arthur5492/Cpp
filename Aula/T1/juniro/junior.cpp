@@ -104,7 +104,7 @@ int main()
     {
       if(FileCheck(GuardarArquivo, Palavras)==false) continue;
       Concatenation(TodosArquivos);
-      break;
+      // break;
     }
       else
       {
