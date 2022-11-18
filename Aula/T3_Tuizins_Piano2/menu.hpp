@@ -3,25 +3,16 @@
 
 #include "includes.hpp"
 
-using namespace std;
 
-class Menu
-{
-private:
-
-protected:
-
-public:
-  //Menu 1
-  void Start();//Start menu
   void Charge(unsigned int times);
   void gotoxy(int x,int y);
   void Pinting();
+  void Start();//Start menu
 
   //Menu 2
-  void riscoX();
-  void riscoY();
-  void caixa();
+  void RiscoX(size_t x);
+  void RiscoY(size_t y);
+  void Escritas(size_t x);
+  void Caixa(size_t speed);
 
-};
 #endif

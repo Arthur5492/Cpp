@@ -1,7 +1,6 @@
 #ifndef CONFIGURATION_HPP
 #define CONFIGURATION_HPP
 
-#include "../Misc/Notas.hpp"
 #include "../Misc/includes.hpp"
 using namespace std;
 

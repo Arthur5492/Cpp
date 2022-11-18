@@ -1,26 +1,25 @@
 #include "menu.hpp"
 
-void Menu::Start()
+void Start()
 {
   gotoxy(5,3);
   cout<<"Welcome to Tuizins";
+  Charge(3);
   sleep(1);
-  Charge(2);
   Pinting();
-  system("cls");
 }
 
 
-void Menu::Charge(unsigned int times)
+void Charge(unsigned int times)
 {
-  for(size_t i;i<times;i++)
+  for(size_t i=0;i<times;i++)
   {
-    cout<<".";
     sleep(1);
+    cout<<".";
   }
 }
 
-void Menu::gotoxy(int x,int y)
+void gotoxy(int x,int y)
 {
   COORD c;
   c.X=x;
@@ -29,7 +28,7 @@ void Menu::gotoxy(int x,int y)
 }
 
 
-void Menu::Pinting()
+void Pinting()
 {
 gotoxy(5,5);
 printf("                                                     .-'''-.     ");
@@ -57,4 +56,21 @@ gotoxy(5,16);
 printf("'-----------'               \\ \\._,\\ '/|  |   |  |  ");
 gotoxy(5,17);
 printf("                             `--'  `' '--'   '--'  ");
+while(1){
+    gotoxy(25,22);
+    printf("PRESS ANY KEY TO CONTINUE");
+    if(_kbhit()){
+        break;
+    }
+    Beep(C4,100);
+    std::this_thread::sleep_for(std::chrono::milliseconds(900));
+    gotoxy(25,22);
+    cout<<"                          ";
+    std::this_thread::sleep_for(std::chrono::milliseconds(900));
+    if(_kbhit()){
+      Beep(C5,100);
+      system("cls");
+        break;
+    }
+  }
 }

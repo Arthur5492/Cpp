@@ -4,8 +4,10 @@ void Menu::Start()
 {
   gotoxy(5,3);
   cout<<"Welcome to Tuizins";
-  // sleep(1);
-  // Charge(2);
+  sleep(1);
+  cout<<".";
+  sleep(1);
+  cout<<".";
   Pinting();
 }
 
@@ -14,8 +16,8 @@ void Menu::Charge(unsigned int times)
 {
   for(size_t i;i<times;i++)
   {
-    cout<<".";
     sleep(1);
+    cout<<".";
   }
 }
 
@@ -69,6 +71,7 @@ while(1){
     std::this_thread::sleep_for(std::chrono::milliseconds(900));
     if(_kbhit()){
       Beep(C5,100);
+      system("cls");
         break;
     }
   }

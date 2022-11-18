@@ -3,7 +3,7 @@
 
 
 
-Sheet::Sheet(float bpm, vector<size_t> melodia, vector<size_t>tempo)
+Sheet::Sheet(size_t bpm, vector<size_t> melodia, vector<size_t>tempo)
   {
     m_melody = melodia;
     m_musicDuration = tempo;

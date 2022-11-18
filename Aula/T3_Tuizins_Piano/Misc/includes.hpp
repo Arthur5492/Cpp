@@ -5,3 +5,6 @@
 #include <thread>
 #include <unistd.h>
 #include <stdlib.h>
+#include <conio.h>
+#include "Notas.hpp"
+#include <fstream>

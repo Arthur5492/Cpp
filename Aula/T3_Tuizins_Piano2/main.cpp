@@ -1,23 +1,34 @@
-#include "Configuration/configuration.hpp"
-#include "Menu/menu.hpp"
+#include "configuration.hpp"
+#include "menu.hpp"
+#include "Musics.hpp"
 
   using namespace std;
 
 int main()
 {
-  system("cls");
-vector<size_t>notas
-{
-  F1, F1 ,F1 ,F1 ,F1, F1, F1
-};
-vector<size_t>tempos
-{
-  4,4,4,4,4,4,4
-};
-Menu s1;
-s1.Start();
+string MusicFile;
+size_t bpm;
+string name;
+vector<pair<size_t,size_t>>Music;
 
-Sheet master(120,notas,tempos);
+system("cls");
+
+//Start(); //Inicio com nomezinho
+Caixa(5);//Caixa do inicio, que vai ser gerada em 5ms de velocidade
+
+while(true)
+{
+  char ch;
+    cin>>ch;
+      Beep(C5,100);
+  if (ch==1)
+  {
+    LoadMusic(MusicFile, Music);
+    Name = MusicFile; Name.erase(Name.end(), Name.end()-4);
+  }
+}
+
+
 
 
   return 0;

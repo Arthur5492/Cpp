@@ -1,6 +1,17 @@
-#ifndef NOTAS_HPP
-#define NOTAS_HPP
-//Isso é para não ter que digitar a frequência de cada nota toda vez, assim fica mais eficiente.
+#include <iostream>
+#include <vector>
+#include <windows.h>
+#include <chrono>
+#include <thread>
+#include <unistd.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+//Notas, para facilitar a inserção
 #define B0  31
 #define C1  33
 #define CS1 35
@@ -62,5 +73,5 @@
 #define A5  880
 #define AS5 932
 #define B5  988 //5 OITAVA SI
-
-#endif
+#define A1CA 989
+#define D3B  990
