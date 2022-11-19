@@ -8,12 +8,12 @@ int main()
 {
 string MusicFile;
 size_t bpm;
-string name;
+string Name;
 vector<pair<size_t,size_t>>Music;
 
 system("cls");
 
-//Start(); //Inicio com nomezinho
+Start(); //Inicio com nomezinho
 Caixa(5);//Caixa do inicio, que vai ser gerada em 5ms de velocidade
 
 while(true)
@@ -23,11 +23,11 @@ while(true)
       Beep(C5,100);
   if (ch==1)
   {
-    LoadMusic(MusicFile, Music);
+    //LoadMusic(MusicFile, bpm, Music);
     Name = MusicFile; Name.erase(Name.end(), Name.end()-4);
+    continue;
   }
 }
-
 
 
 
