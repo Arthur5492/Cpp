@@ -8,6 +8,8 @@
 #include <conio.h>
 #include <fstream>
 #include <string>
+#include <limits>
+#include <utility>
 
 using namespace std;
 

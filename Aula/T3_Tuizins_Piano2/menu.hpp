@@ -13,6 +13,6 @@
   void RiscoX(size_t x);
   void RiscoY(size_t y);
   void Escritas(size_t x);
-  void Caixa(size_t speed);
+  void Caixa(size_t speed1, size_t speed2);
 
 #endif
