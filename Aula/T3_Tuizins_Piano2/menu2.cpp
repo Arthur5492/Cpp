@@ -37,33 +37,41 @@ void Escritas(size_t x)
   //Titulo
   gotoxy(15,5);
   cout<<"Tuizins Piano Menu!!!";
+  Beep(C4,300);
   std::this_thread::sleep_for(std::chrono::milliseconds(x));
   //Topics
   gotoxy(4,8);
   cout<<"What do you wanna do? \\o/";
+  Beep(D4,300);
   std::this_thread::sleep_for(std::chrono::milliseconds(x));
   //Things
   gotoxy(4,10);
   cout<<"1.Play a music";
+  Beep(E4,300);
   std::this_thread::sleep_for(std::chrono::milliseconds(x));
   //
   gotoxy(4,12);
   cout<<"2.Create a music";
+  Beep(F4,300);
   std::this_thread::sleep_for(std::chrono::milliseconds(x));
   //
   gotoxy(4,14);
   cout<<"3.Transpose a music(change tone)";
+  Beep(G4,300);
   std::this_thread::sleep_for(std::chrono::milliseconds(x));
   //
   gotoxy(4,16);
   cout<<"4.Piano!!! \\o/";
+  Beep(A4,300);
   std::this_thread::sleep_for(std::chrono::milliseconds(x));
   //
   gotoxy(4,18);
   cout<<"5.exit :( )"<<endl;
+  Beep(B4,300);
   std::this_thread::sleep_for(std::chrono::milliseconds(x));
   //
   gotoxy(4,20);
+  Beep(C5,300);
   cout<<"Input:";
 }
 

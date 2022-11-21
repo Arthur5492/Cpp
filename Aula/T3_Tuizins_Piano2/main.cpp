@@ -23,8 +23,8 @@ while(true)
       Beep(C5,100);
   if (ch==1)
   {
-    LoadMusic(MusicFile, Music);
-    Name = MusicFile; Name.erase(Name.end(), Name.end()-4);
+    LoadMusic(MusicFile, bpm, Music);
+
   }
 }
 
