@@ -10,10 +10,10 @@
 #include <string>
 #include <limits>
 #include <utility>
+#include <algorithm>
 
 using namespace std;
 
-//Notas, para facilitar a inserção
 #define B0  31
 #define C1  33
 #define CS1 35
@@ -75,5 +75,3 @@ using namespace std;
 #define A5  880
 #define AS5 932
 #define B5  988 //5 OITAVA SI
-#define A1CA 989
-#define D3B  990
