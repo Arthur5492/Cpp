@@ -1,3 +1,5 @@
+#ifndef INCLUDES_HPP
+#define INCLUDES_HPP
 #include <iostream>
 #include <vector>
 #include <windows.h>
@@ -75,3 +77,5 @@ using namespace std;
 #define A5  880
 #define AS5 932
 #define B5  988 //5 OITAVA SI
+
+#endif
